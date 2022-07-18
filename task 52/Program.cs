@@ -23,12 +23,12 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-int[,] matrix = GetRndMatrix(5, 4, 0, 10);
+int[,] matrix = GetRndMatrix(4, 3, 0, 10);
 PrintMatrix(matrix);
 
-int[] AverInColumns(int[,] matrix)
+double[] AverInColumns(int[,] matrix)
 {
-    int[] resultar = new int[matrix.GetLength(1)];
+    double[] resultar = new double[matrix.GetLength(1)];
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
         for (int i = 0; i < matrix.GetLength(0); i++)  //пробежимся по каждому столбцу матрицы
@@ -38,8 +38,17 @@ int[] AverInColumns(int[,] matrix)
     }
     for (int i = 0; i < resultar.Length; i++)
     {
-        resultar[i] = resultar[i] / matrix.GetLength(0);  //считаем среднее для каждого элемента массива
+        resultar[i] = Math.Round((resultar[i] / matrix.GetLength(0)), 3);  //считаем среднее для каждого элемента массива и округляем
     }
     return resultar;
 }
+
+void PrintArray(double[] array)
+{
+    System.Console.WriteLine(string.Join("\t", array));
+}
+
+System.Console.WriteLine("Среднее в столбцах ");
+double[] AverArray = AverInColumns(matrix);
+PrintArray(AverArray);
 
